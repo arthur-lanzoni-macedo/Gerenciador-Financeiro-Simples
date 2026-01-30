@@ -10,8 +10,7 @@ def titulo_projeto():
 def titulos(texto):
     os.system("cls")
     print(texto)
-    input()
-    
+        
 # MENU DO PROJETO
 def menu():
     print("\n1- Adicionar gasto")
@@ -30,7 +29,7 @@ def escolha_opcao():
             escolha = int(input("\nEscolha uma opção: "))
             
             if escolha == 1:
-                print("Adicionar gasto")
+                adicionar_gasto()
             elif escolha == 2:
                 print("Listar gastos")
             elif escolha == 3:
@@ -54,8 +53,43 @@ def sair():
 # VOLTAR AO MENU
 def voltar():
     os.system("cls")
+    titulo_projeto()
     menu()
 
+# SCRIPT VOLTAR
+def voltar_ao_menu():
+    print("\n⌨️  Pressione [Enter] para voltar ao menu... 🔙")
+    input()
+    voltar()
+
+# ADICIONAR GASTO
+def adicionar_gasto():
+    titulos("𝑨𝒅𝒊𝒄𝒊𝒐𝒏𝒂𝒓 𝑮𝒂𝒔𝒕𝒐𝒔\n")
+    
+    try:
+        valor = float(input("Digite o valor do gasto (R$): "))
+        
+        if valor <= 0.0:
+            print("\n⚠️ Erro: O valor deve ser maior que zero!")
+        else: 
+            
+            descricao = input("Descrição da despesa: ")
+            categoria = input("Categoria (ex: Alimentação, Lazer): ")
+            
+            gasto = {}
+            gasto["valor"] = valor
+            gasto["descricao"] = descricao
+            gasto["categoria"] = categoria
+            
+            gastos.append(gasto)
+            
+            print(gastos)
+            print(f"\n✅ Gasto de R$ {valor:.2f} registrado com sucesso!")    
+    except ValueError:
+        print("🧐 Não entendi... Certifique-se de digitar um valor válido!")
+
+    voltar_ao_menu()
+    
 # VISUALIZAR PROJETO
 def visualizar_projeto():
     titulo_projeto()
