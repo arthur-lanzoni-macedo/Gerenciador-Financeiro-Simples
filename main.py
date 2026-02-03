@@ -31,7 +31,7 @@ def escolha_opcao():
             if escolha == 1:
                 adicionar_gasto()
             elif escolha == 2:
-                print("Listar gastos")
+                listar_gasto()
             elif escolha == 3:
                 print("Mostrar total")
             elif escolha == 4:
@@ -47,7 +47,8 @@ def escolha_opcao():
                 
 # SAIR DO SISTEMA
 def sair():
-    print("Obrigado por cuidar das suas finanças! Até logo! 👋✨")
+    os.system("cls")
+    print("Sua gestão financeira está em dia. Parabéns pelo compromisso e organização! Até breve. 📈✅")
     exit()
 
 # VOLTAR AO MENU
@@ -83,13 +84,29 @@ def adicionar_gasto():
             
             gastos.append(gasto)
             
-            print(gastos)
             print(f"\n✅ Gasto de R$ {valor:.2f} registrado com sucesso!")    
     except ValueError:
         print("🧐 Não entendi... Certifique-se de digitar um valor válido!")
 
     voltar_ao_menu()
+
+# LISTAR GASTOS
+def listar_gasto():
+    titulos("𝑳𝒊𝒔𝒕𝒂𝒓 𝑮𝒂𝒔𝒕𝒐𝒔\n")
     
+    if not gastos:
+        print("🧐 Ops! A lista está vazia. Adicione itens antes de continuar.")
+    else:
+        for numero, listando in enumerate(gastos, start=1):                
+            print(f"{numero:02d} →"
+                f"\n💰 Valor: {listando['valor']}"
+                f"\n📝 Descrição: {listando['descricao']}"
+                f"\n🏷️ Categoria: {listando['categoria']}"
+                f"\n{'-'*30}")           
+    
+    voltar_ao_menu()
+
+   
 # VISUALIZAR PROJETO
 def visualizar_projeto():
     titulo_projeto()
