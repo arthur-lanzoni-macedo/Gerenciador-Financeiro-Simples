@@ -33,7 +33,7 @@ def escolha_opcao():
             elif escolha == 2:
                 listar_gasto()
             elif escolha == 3:
-                print("Mostrar total")
+                mostrar_total()
             elif escolha == 4:
                 print("Filtrar por categoria")
             elif escolha == 5:
@@ -106,6 +106,21 @@ def listar_gasto():
     
     voltar_ao_menu()
 
+# MOSTRAR TOTAL
+def mostrar_total():
+    titulos("𝑴𝒐𝒔𝒕𝒓𝒂𝒓 𝑻𝒐𝒕𝒂𝒍")
+    
+    if not gastos:
+        print("🧐 Valor não identificado. Clique em 'Voltar ao Menu' e tente realizar a operação novamente.")
+    else:
+        valor_total = 0
+        
+        for valor in gastos: 
+            valor_total += valor['valor']
+            
+    print(f"Resumo de gastos finalizado! O valor total foi de R$ {valor_total:.2f}. 📝")
+    
+    voltar_ao_menu()
    
 # VISUALIZAR PROJETO
 def visualizar_projeto():
