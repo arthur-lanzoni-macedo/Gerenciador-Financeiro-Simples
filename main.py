@@ -35,7 +35,7 @@ def escolha_opcao():
             elif escolha == 3:
                 mostrar_total()
             elif escolha == 4:
-                print("Filtrar por categoria")
+                filtrar_por_categoria()
             elif escolha == 5:
                 print("Exportar dados")
             elif escolha == 6:
@@ -44,7 +44,11 @@ def escolha_opcao():
                 print("\n⚠️ Opção inválida! Escolha um número entre 1 e 6. 🚫")
         except ValueError:
             print("❌ ERRO: Por favor, digite apenas NÚMEROS! ❌")
-                
+
+# CASO NÃO TENHA ITEM ADICIONADO
+def sem_item_encontrado():
+    print("🧐 Valor não identificado. Clique em 'Voltar ao Menu' e tente realizar a operação novamente.")
+             
 # SAIR DO SISTEMA
 def sair():
     os.system("cls")
@@ -95,7 +99,7 @@ def listar_gasto():
     titulos("𝑳𝒊𝒔𝒕𝒂𝒓 𝑮𝒂𝒔𝒕𝒐𝒔\n")
     
     if not gastos:
-        print("🧐 Ops! A lista está vazia. Adicione itens antes de continuar.")
+        sem_item_encontrado()
     else:
         for numero, listando in enumerate(gastos, start=1):                
             print(f"{numero:02d} →"
@@ -111,7 +115,7 @@ def mostrar_total():
     titulos("𝑴𝒐𝒔𝒕𝒓𝒂𝒓 𝑻𝒐𝒕𝒂𝒍")
     
     if not gastos:
-        print("🧐 Valor não identificado. Clique em 'Voltar ao Menu' e tente realizar a operação novamente.")
+        sem_item_encontrado()
     else:
         valor_total = 0
         
@@ -121,7 +125,31 @@ def mostrar_total():
     print(f"Resumo de gastos finalizado! O valor total foi de R$ {valor_total:.2f}. 📝")
     
     voltar_ao_menu()
-   
+
+# FILTRAR POR CATEGORIA
+def filtrar_por_categoria():
+    titulos("𝑭𝒊𝒍𝒕𝒓𝒂𝒓 𝒑𝒐𝒓 𝑪𝒂𝒕𝒆𝒈𝒐𝒓𝒊𝒂")
+    
+    if not gastos:
+        sem_item_encontrado()
+    else:
+        categoria = input("Qual categoria você está procurando? ").strip().lower()
+        encontrado = False
+        
+        for gasto in gastos:
+            if gasto.get('categoria', '').strip().lower() == categoria:
+                encontrado = True
+                print(
+                    f"\n💰 Valor: {gasto['valor']}"
+                    f"\n📝 Descrição: {gasto['descricao']}"
+                    f"\n🏷️ Categoria: {gasto['categoria']}"
+                    f"\n{'-'*30}"
+                )
+        if not encontrado:
+            sem_item_encontrado()
+                
+    voltar_ao_menu()
+
 # VISUALIZAR PROJETO
 def visualizar_projeto():
     titulo_projeto()
