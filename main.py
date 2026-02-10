@@ -1,4 +1,5 @@
 import os
+import json
 
 gastos = []
 
@@ -17,8 +18,9 @@ def menu():
     print("2- Listar gastos")
     print("3- Mostrar total")
     print("4- Filtrar por categoria")
-    print("5- Exportar dados")
-    print("6- Sair")
+    print("5- Exportar dados para TXT")
+    print("6- Exportar dados para JSON")
+    print("7- Sair")
 
 # ESCOLHA DE OPÇÕES
 def escolha_opcao():
@@ -37,11 +39,13 @@ def escolha_opcao():
             elif escolha == 4:
                 filtrar_por_categoria()
             elif escolha == 5:
-                print("Exportar dados")
+                exportar_dados_txt()
             elif escolha == 6:
+                exportar_dados_json()
+            elif escolha == 7:
                 sair()
             else:
-                print("\n⚠️ Opção inválida! Escolha um número entre 1 e 6. 🚫")
+                print("\n⚠️ Opção inválida! Escolha um número entre 1 e 7. 🚫")
         except ValueError:
             print("❌ ERRO: Por favor, digite apenas NÚMEROS! ❌")
 
@@ -150,6 +154,38 @@ def filtrar_por_categoria():
                 
     voltar_ao_menu()
 
+# EXPORTAR DADOS (TXT)
+def exportar_dados_txt():
+    titulos("𝑬𝒙𝒑𝒐𝒓𝒕𝒂𝒓 𝑫𝒂𝒅𝒐𝒔 𝒑𝒂𝒓𝒂 𝑻𝑿𝑻")
+    
+    if not gastos:
+        sem_item_encontrado()
+    else:
+        with open("dados_financeiro.txt", "w") as arquivo:
+            for gasto in gastos:
+                arquivo.write(f"\nValor: {gasto['valor']}")
+                arquivo.write(f"\nDescrição: {gasto['descricao']}")
+                arquivo.write(f"\nCategoria: {gasto['categoria']}")
+                arquivo.write("-" * 30 + "\n")
+                
+        print("\n📄 Relatório de exportação concluído com êxito.")
+    
+    voltar_ao_menu()
+           
+# EXPORTAR DADOS (JSON)
+def exportar_dados_json():
+    titulos("𝑬𝒙𝒑𝒐𝒓𝒕𝒂𝒓 𝑫𝒂𝒅𝒐𝒔 𝒑𝒂𝒓𝒂 𝑱𝑺𝑶𝑵")
+    
+    if not gastos:
+        sem_item_encontrado()
+    else:
+        with open('exportar_dados.json', 'w', encoding='utf-8') as arquivo:
+            json.dump(gastos, arquivo)
+    
+    print("\n📄 Relatório de exportação concluído com êxito.")
+
+    voltar_ao_menu()   
+    
 # VISUALIZAR PROJETO
 def visualizar_projeto():
     titulo_projeto()
