@@ -17,7 +17,7 @@ O sistema oferece uma interface interativa com as seguintes opções:
 * **📜 Listar Gastos:** Exibição organizada e numerada de todos os registros (formato de extrato).
 * **💰 Mostrar Total:** Cálculo instantâneo da soma de todos os gastos.
 * **🔍 Filtrar por Categoria:** Busca segmentada ignorando diferenciação entre maiúsculas e minúsculas.
-* **📂 Exportar Dados:** Geração de um arquivo `.txt` com o relatório completo para uso externo.
+* **📂 Exportar Dados:** Geração de um arquivo `.txt` e `json` com o relatório completo para uso externo.
 * **🏆 Estatísticas (Bônus):** Insight de média aritmética, identificação do maior e do menor gasto.
 
 ---
@@ -67,8 +67,9 @@ python gerenciador.py
 2. Listar Gastos
 3. Mostrar Total
 4. Filtrar por Categoria
-5. Exportar Relatório
-6. Sair
+5. Exportar Dados para TXT
+6. Exportar Dados para JSON
+7. Sair
 -----------------------
 Escolha: 1
 Descrição: Café
